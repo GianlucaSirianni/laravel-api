@@ -1,19 +1,18 @@
 <template>
     <div>
-        <!-- header navigazione -->
-        <Header />
-        <router-view></router-view>
+        <!-- comp PostCard -->
+        <PostCard />
     </div>
 </template>
 
 <script>
 
-import Header from '../components/Header.vue'
+import PostCard from '../../../components/posts/PostCard.vue'
 
 export default {
-    name: 'App',
+    name: 'PostShow',
     components: {
-        Header
+        PostCard
     },
     data() {
         return {
@@ -25,3 +24,4 @@ export default {
     }
 }
 </script>
+
