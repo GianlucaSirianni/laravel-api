@@ -29,3 +29,13 @@ Route::namespace('Api')->prefix('/posts')->group(function(){
     Route::get('/{id}', 'PostController@show');
 
 });
+
+
+//localhost:8000/api/tag
+Route::namespace('Api')->prefix('/tags')->group(function(){
+    //localhost:8000/api/posts
+    Route::get('/', 'TagsController@index');
+    //localhost:8000/api/posts/12
+    Route::get('/{name}', 'TagsController@show');
+
+});

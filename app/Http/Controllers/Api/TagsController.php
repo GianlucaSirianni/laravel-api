@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Models\Tag;
 
-class PostController extends Controller
+class TagsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +15,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        // $posts = Post::all();
-        $posts = Post::OrderBy('id', 'DESC')->with('category', 'tags')->paginate(5);
+        $tags = Tag::with('posts')->get();
 
-
-
-        return response()->json($posts);
+        return response()->json($tags);
     }
 
     /**
@@ -40,12 +37,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($name)
     {
-        $post = Post::With('category', 'tags')->find($id);
-        if(!$post) return response('Post non trovato', 404);
+        $tag = Tag::where('name', 'like', $name)->with('posts')->get();
 
-        return response()->json($post);
+        return response()->json($tag);
     }
 
     /**
